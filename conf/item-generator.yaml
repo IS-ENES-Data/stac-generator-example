@@ -1,14 +1,41 @@
 generator: item
+#header_deduplication: true
 
 collection_descriptions:
   root_directory: collection_descriptions/
+
+# aggregator:
+#     name: json_aggregator
+#     inputs:
+#         filepath: assets.json
+#     name: elasticsearch_aggregator
+#     inputs:
+#       index: stac-assets
+#       connection_kwargs:
+#         #hosts: ["0.0.0.0:9200"]
+#         #hosts: ['http://136.172.16.122:9200']
+#         hosts: ['http://136.172.60.54:9200']
+#         #use_ssl: false
+#         verify_certs: false
+#         ssl_show_warn: false
 
 inputs:
   - name: text_file
     filepath: tests/file-io/assets.txt
 
 outputs:
-  - name: standard_out
+  - name: elasticsearch
+    namespace: items
+    connection_kwargs:
+      hosts: ["http://0.0.0.0:9200"]
+      #hosts: ['http://136.172.16.122:9200']
+      #hosts: ['http://136.172.60.54:9200']
+      #use_ssl: false
+      verify_certs: false
+      ssl_show_warn: false
+    index: 
+      name: stac-items
+  #- name: standard_out
   - name: json_file
     filepath: tests/file-io/items.json
   - name: text_file

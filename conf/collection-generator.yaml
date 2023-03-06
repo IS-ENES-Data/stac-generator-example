@@ -2,7 +2,20 @@ generator: collection
 
 collection_descriptions:
   root_directory: collection_descriptions/
-
+# aggregator:
+#     name: json_aggregator
+#     inputs:
+#         filepath: items.json
+#     name: elasticsearch_aggregator
+#     inputs:
+#       index: stac-items
+#       connection_kwargs:
+#         #hosts: ["0.0.0.0:9200"]
+#         #hosts: ['http://136.172.16.122:9200']
+#         hosts: ["http://136.172.60.54:9200"]
+#         #use_ssl: false
+#         verify_certs: false
+#         ssl_show_warn: false
 inputs:
   - name: text_file
     filepath: tests/file-io/items.txt
@@ -11,3 +24,13 @@ outputs:
   - name: standard_out
   - name: json_file
     filepath: tests/file-io/collections.json
+  - name: elasticsearch
+    connection_kwargs:
+      hosts: ["http://0.0.0.0:9200"]
+      #hosts: ['http://136.172.16.122:9200']
+      #hosts: ["http://136.172.60.54:9200"]
+      #use_ssl: false
+      verify_certs: false
+      ssl_show_warn: false
+    index:
+      name: stac-collections

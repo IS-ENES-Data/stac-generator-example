@@ -5,23 +5,36 @@ collection_descriptions:
 
 inputs:
   - name: intake_esm
-    uri: https://raw.githubusercontent.com/cedadev/cmip6-object-store/master/catalogs/ceda-zarr-cmip6.json
-    object_path_attr: zarr_path
+    uri: https://gitlab.dkrz.de/data-infrastructure-services/intake-esm/-/raw/master/esm-collections/cloud-access/dkrz_cmip6_cloud.json
+    object_path_attr: uri
     search_kwargs:
-      source_id: UKESM1-0-LL
-      activity_id: CMIP
-      experiment_id:
-        - historical
-        - ssp585-bgc
-      member_id:
-        - r4i1p1f2
-        - r12i1p1f2
-      table_id: Amon
-      variable_id: tas
+      # source_id: UKESM1-0-LL
+      # activity_id: CMIP
+      # experiment_id:
+      #   - historical
+      #   - ssp585-bgc
+      # member_id:
+      #   - r4i1p1f2
+      #   - r12i1p1f2
+      # table_id: Amon
+      # variable_id: tas
 
 outputs:
-  - name: standard_out
+  #- name: standard_out
   - name: json_file
     filepath: tests/file-io/assets.json
   - name: text_file
     filepath: tests/file-io/assets.txt
+  - name: elasticsearch
+    namespace: asset
+    connection_kwargs:
+      hosts: ['http://0.0.0.0:9200']
+      #hosts: ['http://136.172.60.54:9200']
+      #hosts: ['http://136.172.16.122:9200'] 
+      # use_ssl: false
+      verify_certs: false
+      ssl_show_warn: false
+    index:
+      name: stac-assets
+logging:
+  level: INFO
