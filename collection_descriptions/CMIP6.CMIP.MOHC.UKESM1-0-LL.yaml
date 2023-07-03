@@ -7,7 +7,7 @@ asset:
     #- method: object_store_stats
     - method: regex
       inputs:
-        regex:  'https://swift.dkrz.de/v1/dkrz_0b2a0dcc-1430-4a8a-9f25-a6cb8924d92b/cmip6-zarr-2021\/(?P<mip_era>\w+)\.(?P<activity_id>\w+)\.(?P<institution_id>\w+(?:-\w+)*)\.(?P<source_id>\w+(?:-\w+)+)\.(?P<experiment_id>\w+)\.(?P<member_id>\w+)\.(?P<table_id>\w+)\.(?P<variable_id>\w+)\.(?P<grid_label>\w+)\.(?P<version>\w+)'
+        regex: 'https://swift.dkrz.de/v1/dkrz_0b2a0dcc-1430-4a8a-9f25-a6cb8924d92b/cmip6-zarr-2021\/(?P<mip_era>\w+)\.(?P<activity_id>\w+)\.(?P<institution_id>\w+(?:-\w+)*)\.(?P<source_id>\w+(?:-\w+)+)\.(?P<experiment_id>\w+)\.(?P<member_id>\w+)\.(?P<table_id>\w+)\.(?P<variable_id>\w+)\.(?P<grid_label>\w+)\.(?P<version>\w+)'
 
 item:
   # The default item id is a hash of the collection id
@@ -27,15 +27,14 @@ item:
         # - institution_id
         # - source_id
         - experiment_id
-        - member_id
+        # - member_id
         #- table_id
         #- variable_id
         # - grid_label
   extraction_methods:
-    - method: json_file
+    - method: elasticsearch
       inputs:
-        filepath: tests/file-io/assets.json
-        terms:
+        list:
           - mip_era
           - activity_id
           - institution_id
@@ -60,10 +59,9 @@ collection:
     inputs:
       value: cmip6onswift
   extraction_methods:
-    - method: json_file
+    - method: elasticsearch
       inputs:
-        filepath: tests/file-io/items.json
-        terms:
+        list:
           - mip_era
           - activity_id
           - institution_id
