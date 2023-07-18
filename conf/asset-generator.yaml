@@ -21,10 +21,6 @@ inputs:
  #   uri: https://gitlab.dkrz.de/data-infrastructure-services/intake-esm/-/raw/master/esm-collections/cloud-access/dkrz_cmip6_disk.json
  #   object_path_attr: uri
  #   search_kwargs:
-  - name: intake_esm_mpige_disk
-    uri: https://gitlab.dkrz.de/data-infrastructure-services/intake-esm/-/raw/master/esm-collections/cloud-access/dkrz_mpige_disk.json
-    object_path_attr: uri
-    search_kwargs:
 
 
 outputs:
