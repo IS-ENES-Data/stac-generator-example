@@ -7,9 +7,6 @@ inputs:
   - name: intake_esm
     uri: https://gitlab.dkrz.de/data-infrastructure-services/intake-esm/-/raw/master/esm-collections/cloud-access/dkrz_cmip6_cloud.json
     object_path_attr: uri
-  # - name: intake_esm_mpige_disk
-  #   uri: https://gitlab.dkrz.de/data-infrastructure-services/intake-esm/-/raw/master/esm-collections/cloud-access/dkrz_mpige_disk.json
-  #   object_path_attr: uri
 
 outputs:
   #- name: standard_out
